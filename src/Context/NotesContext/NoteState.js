@@ -28,18 +28,22 @@ const NoteState = (props) => {
   };
 
   //Add a note
-  const addNotes = (title, description, tag) => {
+  const addNotes = async (title, description, tag) => {
     //Api Call
-
-    const note = {
-      _id: '631a025886d09fb6e50a2ddca',
-      user: '631a015f86d09fb6e530addc2',
-      title: title,
-      description: description,
-      tag: tag,
-      time: '2022-09-08T14:55:20.247Z',
-      __v: 0,
-    };
+    const res = await fetch(`${host}/api/notes/createnote`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token':
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxNzRkMGY3YjE4YmE0YWVmZjJjYmE2In0sImlhdCI6MTY2MjUyNzU1NX0.I6SamXOEGCpuyAr36wHX0cN6SKGyL124_mhEx3BLs08',
+      },
+      body: {
+        title: title,
+        description: description,
+        tag: tag,
+      },
+    });
+    const note = await res.json();
     setNotes(notes.concat(note));
   };
 
