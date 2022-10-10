@@ -37,11 +37,11 @@ const NoteState = (props) => {
         'auth-token':
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxNzRkMGY3YjE4YmE0YWVmZjJjYmE2In0sImlhdCI6MTY2MjUyNzU1NX0.I6SamXOEGCpuyAr36wHX0cN6SKGyL124_mhEx3BLs08',
       },
-      body: {
+      body: JSON.stringify({
         title: title,
         description: description,
         tag: tag,
-      },
+      }),
     });
     const note = await res.json();
     setNotes(notes.concat(note));
@@ -66,7 +66,7 @@ const NoteState = (props) => {
 
   //Edit a note
   const editNote = (id, title, description, tag) => {
-    console.log('Editing note with id ' + id);
+    console.log('Editing note with id ' + id + title + description + tag);
   };
 
   return (

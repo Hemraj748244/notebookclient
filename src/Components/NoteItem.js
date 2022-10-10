@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from 'react';
 import NoteContext from '../Context/NotesContext/NoteContext';
-
+ 
 const NoteItem = (props) => {
   const context = useContext(NoteContext);
 
   const note = props.everyNote;
   const { deleteNote, editNote } = context;
-
+  
   return (
     <div className="card my-2">
       <div className="card-header d-flex justify-content-between">
@@ -20,8 +20,12 @@ const NoteItem = (props) => {
           ></i>
           <i
             className="fa-solid fa-pen-to-square mx-2"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
             onClick={() => {
-              editNote(note._id);
+              {
+                editNote(note._id,note.title,note.description,note.tag);
+              }
             }}
           ></i>
         </div>
