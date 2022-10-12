@@ -1,41 +1,40 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import NoteContext from '../Context/NotesContext/NoteContext';
- 
+import EditNote from './EditNote';
 const NoteItem = (props) => {
   const context = useContext(NoteContext);
 
-  const note = props.everyNote;
-  const { deleteNote, editNote } = context;
-  
+  const { inote, updatenote } = props;
+  const { deleteNote } = context;
+
   return (
     <div className="card my-2">
       <div className="card-header d-flex justify-content-between">
-        <strong> {note.title} </strong>
+        <strong> {inote.title} </strong>
         <div>
           <i
             className="fa-solid fa-trash mx-2"
             onClick={() => {
-              deleteNote(note._id);
+              deleteNote(inote._id);
             }}
           ></i>
+
           <i
             className="fa-solid fa-pen-to-square mx-2"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             onClick={() => {
-              {
-                editNote(note._id,note.title,note.description,note.tag);
-              }
+              updatenote(inote);
             }}
           ></i>
         </div>
       </div>
       <div className="card-body">
         <blockquote className="blockquote mb-0">
-          <p>{note.description}</p>
+          <p>{inote.description}</p>
           <footer className="blockquote-footer">
-            Tag : {note.tag}
-            <cite> @time : {note.time} </cite>
+            Tag : {inote.tag}
+            <cite> @time : {inote.time} </cite>
           </footer>
         </blockquote>
       </div>
