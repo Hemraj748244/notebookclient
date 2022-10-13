@@ -15,6 +15,7 @@ const AddNote = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addNotes(note.title, note.description, note.tag);
+    setNote({ title: '', description: '', tag: '' });
   };
 
   return (
@@ -29,6 +30,7 @@ const AddNote = (props) => {
           id="title"
           name="title"
           placeholder="add a title here!"
+          value={note.title}
           onChange={handleChange}
         />
       </div>
@@ -41,6 +43,8 @@ const AddNote = (props) => {
           id="description"
           name="description"
           rows="3"
+          placeholder="more about the title here!"
+          value={note.description}
           onChange={handleChange}
         ></textarea>
       </div>
@@ -55,10 +59,16 @@ const AddNote = (props) => {
           aria-label=".form-control-sm example"
           id="tag"
           name="tag"
+          value={note.tag}
           onChange={handleChange}
         />
       </div>
-      <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
+      <button
+        disabled={note.title.length < 5 || note.description.length < 5}
+        type="submit"
+        className="btn btn-primary"
+        onClick={handleSubmit}
+      >
         Add Note
       </button>
     </form>
