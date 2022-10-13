@@ -1,5 +1,6 @@
-import { useContext } from 'react';
+import React from 'react';
 import AuthContext from './AuthContext';
+
 const AuthState = (props) => {
   const examplevalue = 'value';
   return (
@@ -8,6 +9,5 @@ const AuthState = (props) => {
     </AuthContext.Provider>
   );
 };
-
 
 export default AuthState;

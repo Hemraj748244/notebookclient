@@ -7,6 +7,8 @@ import About from './Components/About';
 import NoteState from './Context/NotesContext/NoteState';
 import AuthState from './Context/AuthContexts/AuthState';
 import Alert from './Components/Alert';
+import Login from './Components/Login';
+import Signup from './Components/Signup';
 
 export default function App() {
   return (
@@ -17,6 +19,8 @@ export default function App() {
             <Navbar />
             <Alert message="this is alert" />
             <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/home" element={<Home />} />
