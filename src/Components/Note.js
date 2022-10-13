@@ -136,6 +136,9 @@ export default function Note() {
                 type="button"
                 className="btn btn-primary"
                 data-bs-dismiss="modal"
+                disabled={
+                  note.etitle.length < 5 || note.edescription.length < 5
+                }
               >
                 Update Note
               </button>
@@ -144,6 +147,7 @@ export default function Note() {
         </div>
       </div>
       <div className="row">
+        {notes.length < 1 && 'Please add a note !'}
         {notes.map((note) => {
           return (
             <div className="col-md-6" key={note.time}>
