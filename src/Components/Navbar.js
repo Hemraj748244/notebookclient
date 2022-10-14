@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 export default function Navbar() {
   const location = useLocation();
   const currPath = location.pathname;
@@ -25,14 +25,14 @@ export default function Navbar() {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link
-                className={`nav-link ${currPath === '/' ? 'active' : ''}`}
+                className={`nav-link ${currPath === "/" ? "active" : ""}`}
                 aria-current="page"
                 to="/"
               >
                 Home
               </Link>
             </li>
-            <li className={`nav-item ${currPath === '/about' ? 'active' : ''}`}>
+            <li className={`nav-item ${currPath === "/about" ? "active" : ""}`}>
               <Link className="nav-link" to="/about">
                 About
               </Link>
@@ -45,7 +45,7 @@ export default function Navbar() {
               to="/login"
               role="button"
             >
-              Login <i class="fa-solid fa-arrow-right-to-bracket"></i>
+              Login <i className="fa-solid fa-arrow-right-to-bracket"></i>
             </Link>
             <Link
               className="btn btn-outline-dark btn-rounded"
@@ -53,7 +53,7 @@ export default function Navbar() {
               to="/signup"
               role="button"
             >
-              Signup <i class="fa-sharp fa-solid fa-user-plus"></i>
+              Signup <i className="fa-sharp fa-solid fa-user-plus"></i>
             </Link>
           </form>
         </div>
