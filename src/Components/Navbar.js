@@ -40,20 +40,20 @@ export default function Navbar() {
           </ul>
           <form className="d-flex">
             <Link
-              className="btn btn-outline-dark"
+              className="btn btn-outline-dark btn-rounded mx-2"
               data-mdb-ripple-color="dark"
               to="/login"
               role="button"
             >
-              Login
+              Login <i class="fa-solid fa-arrow-right-to-bracket"></i>
             </Link>
             <Link
-              className="btn btn-outline-dark"
+              className="btn btn-outline-dark btn-rounded"
               data-mdb-ripple-color="dark"
               to="/signup"
               role="button"
             >
-              Signup
+              Signup <i class="fa-sharp fa-solid fa-user-plus"></i>
             </Link>
           </form>
         </div>

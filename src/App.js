@@ -19,9 +19,9 @@ export default function App() {
             <Navbar />
             <Alert message="this is alert" />
             <Routes>
+              <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
-              <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/home" element={<Home />} />
             </Routes>

@@ -1,14 +1,42 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import AuthContext from '../Context/AuthContexts/AuthContext';
 
 const Signup = () => {
+  const context = useContext(AuthContext);
+  const { createuser } = context;
+  const [user, setUser] = useState({
+    name: '',
+    email: '',
+    phonenumber: '',
+    password: '',
+  });
+  const handleSubmit = (e) => {
+    e.preventDefaults();
+  };
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+    createuser(user.name, user.email, user.password, user.phonenumber);
+    setUser({
+      name: '',
+      email: '',
+      phonenumber: '',
+      password: '',
+    });
+  };
   return (
-    <div className="container">
+    <div className="container my-2">
       <form>
         {/* 2 column grid layout with text inputs for the first and last names */}
         <div class="row mb-4">
           <div class="col">
             <div class="form-outline">
-              <input type="text" id="form3Example1" class="form-control" />
+              <input
+                type="text"
+                name="name"
+                id="form3Example1"
+                class="form-control"
+                onChange={handleChange}
+              />
               <label class="form-label" htmlFor="form3Example1">
                 Full name
               </label>
@@ -16,7 +44,13 @@ const Signup = () => {
           </div>
           <div class="col">
             <div class="form-outline">
-              <input type="tell" id="form3Example2" class="form-control" />
+              <input
+                type="tell"
+                name="phonenumber"
+                id="form3Example2"
+                class="form-control"
+                onChange={handleChange}
+              />
               <label class="form-label" htmlFor="form3Example2">
                 Phone number
               </label>
@@ -26,7 +60,13 @@ const Signup = () => {
 
         {/* Email input */}
         <div class="form-outline mb-4">
-          <input type="email" id="form3Example3" class="form-control" />
+          <input
+            type="email"
+            id="form3Example3"
+            name="email"
+            class="form-control"
+            onChange={handleChange}
+          />
           <label class="form-label" htmlFor="form3Example3">
             Email address
           </label>
@@ -34,28 +74,24 @@ const Signup = () => {
 
         {/* Password input */}
         <div class="form-outline mb-4">
-          <input type="password" id="form3Example4" class="form-control" />
+          <input
+            type="password"
+            id="form3Example4"
+            name="password"
+            class="form-control"
+            onChange={handleChange}
+          />
           <label class="form-label" htmlFor="form3Example4">
             Password
           </label>
         </div>
 
-        {/* Checkbox */}
-        <div class="form-check d-flex justify-content-center mb-4">
-          <input
-            class="form-check-input me-2"
-            type="checkbox"
-            value=""
-            id="form2Example33"
-            checked
-          />
-          <label class="form-check-label" htmlFor="form2Example33">
-            Subscribe to our newsletter
-          </label>
-        </div>
-
         {/* Submit button */}
-        <button type="submit" class="btn btn-primary btn-block mb-4">
+        <button
+          type="submit"
+          class="btn btn-primary btn-block mb-4"
+          onSubmit={handleSubmit}
+        >
           Sign up
         </button>
 
