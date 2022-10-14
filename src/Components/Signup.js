@@ -12,9 +12,6 @@ const Signup = () => {
   });
   const handleSubmit = (e) => {
     e.preventDefaults();
-  };
-  const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
     createuser(user.name, user.email, user.password, user.phonenumber);
     setUser({
       name: '',
@@ -22,6 +19,10 @@ const Signup = () => {
       phonenumber: '',
       password: '',
     });
+  };
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+    
   };
   return (
     <div className="container my-2">
