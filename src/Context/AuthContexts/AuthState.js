@@ -24,7 +24,8 @@ const AuthState = (props) => {
         phonenumber: phonenumber,
       }),
     });
-    authtoken = await res.text();
+    const ss = await res.text();
+    authtoken.concat(ss);
 
     console.log("Creating the user & AUTH-TOKEN " + authtoken);
   };

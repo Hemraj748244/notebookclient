@@ -3,7 +3,9 @@ import AuthContext from "../Context/AuthContexts/AuthContext";
 
 const Signup = () => {
   const context = useContext(AuthContext);
+  
   const { createuser } = context;
+  
   const [user, setUser] = useState({
     name: "",
     email: "",
