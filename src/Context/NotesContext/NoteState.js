@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import NoteContext from './NoteContext';
-import EditNote from '../../Components/EditNote';
+import React, { useState } from "react";
+import NoteContext from "./NoteContext";
+import EditNote from "../../Components/EditNote";
 
 const NoteState = (props) => {
-  const host = 'https://inotebookbackend.hemraj748244.repl.co';
+  const host = "https://inotebookbackend.hemraj748244.repl.co";
   const [notes, setNotes] = useState([]);
   const [enote, setEnote] = useState({});
   const getAllNotes = async () => {
     try {
       const res = await fetch(`${host}/api/notes/fetchallnotes`, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'Content-Type': 'application/json',
-          'auth-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxNzRkMGY3YjE4YmE0YWVmZjJjYmE2In0sImlhdCI6MTY2MjUyNzU1NX0.I6SamXOEGCpuyAr36wHX0cN6SKGyL124_mhEx3BLs08',
+          "Content-Type": "application/json",
+          "auth-token":
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxNzRkMGY3YjE4YmE0YWVmZjJjYmE2In0sImlhdCI6MTY2MjUyNzU1NX0.I6SamXOEGCpuyAr36wHX0cN6SKGyL124_mhEx3BLs08",
         },
       });
 
@@ -34,11 +34,11 @@ const NoteState = (props) => {
   const addNotes = async (title, description, tag) => {
     //Api Call
     const res = await fetch(`${host}/api/notes/createnote`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'auth-token':
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxNzRkMGY3YjE4YmE0YWVmZjJjYmE2In0sImlhdCI6MTY2MjUyNzU1NX0.I6SamXOEGCpuyAr36wHX0cN6SKGyL124_mhEx3BLs08',
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxNzRkMGY3YjE4YmE0YWVmZjJjYmE2In0sImlhdCI6MTY2MjUyNzU1NX0.I6SamXOEGCpuyAr36wHX0cN6SKGyL124_mhEx3BLs08",
       },
       body: JSON.stringify({
         title: title,
@@ -53,14 +53,14 @@ const NoteState = (props) => {
   // Delete a note
   const deleteNote = async (id) => {
     const res = await fetch(`${host}/api/notes/deletenote/${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        'Content-Type': 'application/json',
-        'auth-token':
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxNzRkMGY3YjE4YmE0YWVmZjJjYmE2In0sImlhdCI6MTY2MjUyNzU1NX0.I6SamXOEGCpuyAr36wHX0cN6SKGyL124_mhEx3BLs08',
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxNzRkMGY3YjE4YmE0YWVmZjJjYmE2In0sImlhdCI6MTY2MjUyNzU1NX0.I6SamXOEGCpuyAr36wHX0cN6SKGyL124_mhEx3BLs08",
       },
     });
-    console.log('note deleted with id ' + id);
+    console.log("note deleted with id " + id);
     const newNotes = notes.filter((note) => {
       return note._id != id;
     });
@@ -70,13 +70,13 @@ const NoteState = (props) => {
   //Edit a note
 
   const editNote = async (eid, etitle, edescription, etag) => {
-    console.log('note id :' + eid);
+    console.log("note id :" + eid);
     const res = await fetch(`${host}/api/notes/updatenote/${eid}`, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
-        'auth-token':
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxNzRkMGY3YjE4YmE0YWVmZjJjYmE2In0sImlhdCI6MTY2MjUyNzU1NX0.I6SamXOEGCpuyAr36wHX0cN6SKGyL124_mhEx3BLs08',
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxNzRkMGY3YjE4YmE0YWVmZjJjYmE2In0sImlhdCI6MTY2MjUyNzU1NX0.I6SamXOEGCpuyAr36wHX0cN6SKGyL124_mhEx3BLs08",
       },
       body: JSON.stringify({
         title: etitle,
@@ -90,7 +90,7 @@ const NoteState = (props) => {
     const index = updatednotes.indexOf(item);
     console.log(index);
     updatednotes[index] = note;
-    console.log('updation completed :' + JSON.stringify(note));
+    console.log("updation completed :" + JSON.stringify(note));
     setNotes(updatednotes);
   };
 

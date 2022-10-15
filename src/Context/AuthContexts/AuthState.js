@@ -1,33 +1,38 @@
 import React, { useState } from "react";
 import AuthContext from "./AuthContext";
+import Alert from "../../Components/Alert";
 
 const AuthState = (props) => {
-  const [state, setState] = useState("State value");
-  const checkContext = () => {
-    console.log("1.0 state value " + state);
-  };
-  console.log(state);
+  const [message, setMessage] = useState("");
 
   const host = "https://inotebookbackend.hemraj748244.repl.co";
 
   const authtoken = "";
   const createuser = async (name, email, password, phonenumber) => {
-    const res = await fetch(`${host}/api/auth/createuser`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        password: password,
-        phonenumber: phonenumber,
-      }),
-    });
-    const ss = await res.text();
-    authtoken.concat(ss);
+    try {
+      const res = await fetch(`${host}/api/auth/createuser`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: password,
+          phonenumber: phonenumber,
+        }),
+      });
 
-    console.log("Creating the user & AUTH-TOKEN " + ss);
+      if (!res.ok) {
+        const message = `An error has occured: ${res.status} - ${res.statusText}`;
+        setMessage(`${res.statusText}`);
+        throw new Error(message);
+      }
+      authtoken = await res.text();
+      console.log("Creating the user & AUTH-TOKEN " + authtoken);
+    } catch (err) {
+      <Alert message="user with this email already exists" />;
+    }
   };
 
   const userlogin = () => {
@@ -35,9 +40,7 @@ const AuthState = (props) => {
   };
 
   return (
-    <AuthContext.Provider
-      value={{ setState, checkContext, createuser, userlogin }}
-    >
+    <AuthContext.Provider value={{ message, createuser, userlogin }}>
       {props.children}
     </AuthContext.Provider>
   );
