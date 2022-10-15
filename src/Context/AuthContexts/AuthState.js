@@ -3,11 +3,11 @@ import AuthContext from "./AuthContext";
 import Alert from "../../Components/Alert";
 
 const AuthState = (props) => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("hello world");
 
   const host = "https://inotebookbackend.hemraj748244.repl.co";
 
-  const authtoken = "";
+  let authtoken = "";
   const createuser = async (name, email, password, phonenumber) => {
     try {
       const res = await fetch(`${host}/api/auth/createuser`, {
@@ -25,13 +25,14 @@ const AuthState = (props) => {
 
       if (!res.ok) {
         const message = `An error has occured: ${res.status} - ${res.statusText}`;
-        setMessage(`${res.statusText}`);
+        setMessage(message);
         throw new Error(message);
       }
       authtoken = await res.text();
+      setMessage("Successfully signed up!");
       console.log("Creating the user & AUTH-TOKEN " + authtoken);
     } catch (err) {
-      <Alert message="user with this email already exists" />;
+      console.log(err);
     }
   };
 

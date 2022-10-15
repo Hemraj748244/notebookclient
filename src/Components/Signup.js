@@ -4,7 +4,7 @@ import AuthContext from "../Context/AuthContexts/AuthContext";
 const Signup = () => {
   const context = useContext(AuthContext);
   
-  const { createuser } = context;
+  const { createuser ,message} = context;
   
   const [user, setUser] = useState({
     name: "",
@@ -21,6 +21,7 @@ const Signup = () => {
       phonenumber: "",
       password: "",
     });
+    console.log(message);
   };
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
