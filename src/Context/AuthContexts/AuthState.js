@@ -27,7 +27,7 @@ const AuthState = (props) => {
     const ss = await res.text();
     authtoken.concat(ss);
 
-    console.log("Creating the user & AUTH-TOKEN " + authtoken);
+    console.log("Creating the user & AUTH-TOKEN " + ss);
   };
 
   const userlogin = () => {
