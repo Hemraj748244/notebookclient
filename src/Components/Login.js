@@ -2,10 +2,7 @@ import React, { useContext } from 'react';
 import AuthContext from '../Context/AuthContexts/AuthContext';
 const Login = () => {
   const context = useContext(AuthContext);
-  const { setState, checkContext } = context;
-  checkContext();
-  setState('State value from Login');
-  checkContext();
+  
   return (
     <div className="container my-2">
       <form>

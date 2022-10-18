@@ -11,6 +11,7 @@ const Signup = () => {
     email: "",
     phonenumber: "",
     password: "",
+    cpassword:""
   });
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,6 +21,7 @@ const Signup = () => {
       email: "",
       phonenumber: "",
       password: "",
+      cpassword:""
     });
     console.log(message);
   };
@@ -79,7 +81,8 @@ const Signup = () => {
         </div>
 
         {/* Password input */}
-        <div className="form-outline mb-4">
+        <div className="form-outline row mb-4">
+        <div className="col">
           <input
             type="password"
             id="form3Example4"
@@ -92,10 +95,25 @@ const Signup = () => {
             Password
           </label>
         </div>
+         <div className="col">
+          <input
+            type="password"
+            id="form3Example4"
+            name="cpassword"
+            className="form-control"
+            value={user.cpassword}
+            onChange={handleChange}
+          />
+          <label className="form-label" htmlFor="form3Example4">
+            Confirm Password
+          </label>
+        </div>
+        </div>
 
         {/* Submit button */}
         <button
           type="button"
+          disabled={user.password!==user.cpassword || (user.password.length === 0 || user.cpassword.length === 0)}
           className="btn btn-primary btn-block mb-4"
           onClick={handleSubmit}
         >
