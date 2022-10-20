@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import AuthContext from "./AuthContext";
+import { useNavigate } from "react-router-dom";
 import Alert from "../../Components/Alert";
 
 const AuthState = (props) => {
+  const navigate = useNavigate();
   const [message, setMessage] = useState("hello world");
 
   const host = "https://inotebookbackend.hemraj748244.repl.co";
 
-  let authtoken = "";
+
   const createuser = async (name, email, password, phonenumber) => {
     try {
       const res = await fetch(`${host}/api/auth/createuser`, {
@@ -22,22 +24,47 @@ const AuthState = (props) => {
           phonenumber: phonenumber,
         }),
       });
-
+const json = await res.json();
       if (!res.ok) {
-        const message = `An error has occured: ${res.status} - ${res.statusText}`;
+        const message = `An error has occured: ${json.message}`;
         setMessage(message);
         throw new Error(message);
       }
-      authtoken = await res.text();
+      
       setMessage("Successfully signed up!");
-      console.log("Creating the user & AUTH-TOKEN " + authtoken);
+      console.log("Creating the user & AUTH-TOKEN " + json.authtoken);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const userlogin = () => {
-    console.login("User login");
+  const userlogin = async (email, password) => {
+    try {
+      const user = await fetch(`${host}/api/auth/login`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ email: email, password: password }),
+      });
+      const json = await user.json();
+      if (!user.ok) {
+        const message = `An error has occured: ${json.message}`;
+        setMessage(message);
+        throw new Error(message);
+      }
+
+      
+      if (json.success !== true) {
+        setMessage(`${json.message}`);
+      } else {
+        navigate("/home");
+        setMessage("Successfully Signed in!");
+        console.log(json.authtoken);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

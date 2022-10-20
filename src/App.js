@@ -15,12 +15,12 @@ export default function App() {
   // const context = useContext(AuthContext);
   // const { message } = context;
   return (
-    <AuthState>
-      <NoteState>
-        <div className="App">
-          <Router>
+    <Router>
+      <AuthState>
+        <NoteState>
+          <div className="App">
             <Navbar />
-            <ShowAlert/>
+            <ShowAlert />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
@@ -29,9 +29,9 @@ export default function App() {
               <Route path="/home" element={<Home />} />
             </Routes>
             <Footer />
-          </Router>
-        </div>
-      </NoteState>
-    </AuthState>
+          </div>
+        </NoteState>
+      </AuthState>
+    </Router>
   );
 }
