@@ -9,7 +9,6 @@ const AuthState = (props) => {
 
   const host = "https://inotebookbackend.hemraj748244.repl.co";
 
-
   const createuser = async (name, email, password, phonenumber) => {
     try {
       const res = await fetch(`${host}/api/auth/createuser`, {
@@ -24,13 +23,14 @@ const AuthState = (props) => {
           phonenumber: phonenumber,
         }),
       });
-const json = await res.json();
+      const json = await res.json();
       if (!res.ok) {
         const message = `An error has occured: ${json.message}`;
         setMessage(message);
         throw new Error(message);
       }
-      
+      localStorage.setItem("item", json.authtoken);
+      navigate("/home");
       setMessage("Successfully signed up!");
       console.log("Creating the user & AUTH-TOKEN " + json.authtoken);
     } catch (err) {
@@ -54,10 +54,10 @@ const json = await res.json();
         throw new Error(message);
       }
 
-      
       if (json.success !== true) {
         setMessage(`${json.message}`);
       } else {
+        localStorage.setItem("item", json.authtoken);
         navigate("/home");
         setMessage("Successfully Signed in!");
         console.log(json.authtoken);

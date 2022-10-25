@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
 import NoteContext from '../Context/NotesContext/NoteContext';
 import NoteItem from './NoteItem';
-export default function Note() {
+export default function Note(props) {
   const context = useContext(NoteContext);
   const { notes, getAllNotes, editNote } = context;
 
   useEffect(() => {
-    getAllNotes();
+    getAllNotes(props.auth);
   }, []);
 
   notes.reverse();
@@ -27,7 +27,7 @@ export default function Note() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    editNote(note.eid, note.etitle, note.edescription, note.etag);
+    editNote(note.eid, note.etitle, note.edescription, note.etag,props.auth);
     console.log('updating the note' + JSON.stringify(note));
 
     // addNotes(note.title, note.description, note.tag);
@@ -151,7 +151,7 @@ export default function Note() {
         {notes.map((note) => {
           return (
             <div className="col-md-6" key={note.time}>
-              <NoteItem inote={note} updatenote={EditNote} />
+              <NoteItem inote={note} updatenote={EditNote} auth={props.auth}/>
             </div>
           );
         })}

@@ -3,10 +3,10 @@ import NoteContext from '../Context/NotesContext/NoteContext';
 import EditNote from './EditNote';
 const NoteItem = (props) => {
   const context = useContext(NoteContext);
-
+  
   const { inote, updatenote } = props;
   const { deleteNote } = context;
-
+  
   return (
     <div className="card my-2">
       <div className="card-header d-flex justify-content-between">
@@ -15,7 +15,7 @@ const NoteItem = (props) => {
           <i
             className="fa-solid fa-trash mx-2"
             onClick={() => {
-              deleteNote(inote._id);
+              deleteNote(inote._id,props.auth);
             }}
           ></i>
 

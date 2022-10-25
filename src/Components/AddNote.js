@@ -14,7 +14,7 @@ const AddNote = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addNotes(note.title, note.description, note.tag);
+    addNotes(note.title, note.description, note.tag,props.auth);
     setNote({ title: '', description: '', tag: '' });
   };
 
