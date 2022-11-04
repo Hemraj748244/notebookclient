@@ -8,7 +8,9 @@ const ShowAlert = (props) => {
 
   return (
     <div className="container">
-      <Alert message={message} />
+      {setTimeout(() => {
+        <Alert message={message} />;
+      }, 3000)}
     </div>
   );
 };

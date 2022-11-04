@@ -10,11 +10,17 @@ const Login = () => {
     e.preventDefault();
     const { userlogin } = context;
     userlogin(user.email, user.password);
-   
   };
   return (
-    <div className="container my-2">
-      <form>
+    <div className="container my-2 mx-150">
+      <form
+        style={{
+          border: "2px solid white",
+          padding: "120px",
+          paddingTop: "10px",
+        }}
+      >
+        <h2 style={{ color: "white" }}>Login -</h2>
         <div className="form-outline mb-4">
           <input
             type="email"

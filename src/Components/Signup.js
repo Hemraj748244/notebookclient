@@ -3,15 +3,15 @@ import AuthContext from "../Context/AuthContexts/AuthContext";
 
 const Signup = () => {
   const context = useContext(AuthContext);
-  
-  const { createuser ,message} = context;
-  
+
+  const { createuser, message } = context;
+
   const [user, setUser] = useState({
     name: "",
     email: "",
     phonenumber: "",
     password: "",
-    cpassword:""
+    cpassword: "",
   });
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,17 +21,22 @@ const Signup = () => {
       email: "",
       phonenumber: "",
       password: "",
-      cpassword:""
+      cpassword: "",
     });
-   
   };
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   return (
     <div className="container my-2">
-      <form>
-        {/* 2 column grid layout with text inputs for the first and last names */}
+      <form
+        style={{
+          border: "2px solid white",
+          padding: "120px",
+          paddingTop: "10px",
+        }}
+      >
+        <h2 style={{ color: "white" }}>SignUp -</h2>
         <div className="row mb-4">
           <div className="col">
             <div className="form-outline">
@@ -82,38 +87,42 @@ const Signup = () => {
 
         {/* Password input */}
         <div className="form-outline row mb-4">
-        <div className="col">
-          <input
-            type="password"
-            id="form3Example4"
-            name="password"
-            className="form-control"
-            value={user.password}
-            onChange={handleChange}
-          />
-          <label className="form-label" htmlFor="form3Example4">
-            Password
-          </label>
-        </div>
-         <div className="col">
-          <input
-            type="password"
-            id="form3Examplecp"
-            name="cpassword"
-            className="form-control"
-            value={user.cpassword}
-            onChange={handleChange}
-          />
-          <label className="form-label" htmlFor="form3Example4">
-            Confirm Password
-          </label>
-        </div>
+          <div className="col">
+            <input
+              type="password"
+              id="form3Example4"
+              name="password"
+              className="form-control"
+              value={user.password}
+              onChange={handleChange}
+            />
+            <label className="form-label" htmlFor="form3Example4">
+              Password
+            </label>
+          </div>
+          <div className="col">
+            <input
+              type="password"
+              id="form3Examplecp"
+              name="cpassword"
+              className="form-control"
+              value={user.cpassword}
+              onChange={handleChange}
+            />
+            <label className="form-label" htmlFor="form3Example4">
+              Confirm Password
+            </label>
+          </div>
         </div>
 
         {/* Submit button */}
         <button
           type="button"
-          disabled={user.password!==user.cpassword || (user.password.length === 0 || user.cpassword.length === 0)}
+          disabled={
+            user.password !== user.cpassword ||
+            user.password.length === 0 ||
+            user.cpassword.length === 0
+          }
           className="btn btn-primary btn-block mb-4"
           onClick={handleSubmit}
         >

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+
 export default function Navbar() {
   const location = useLocation();
   const currPath = location.pathname;
@@ -53,8 +54,8 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-light sticky-top">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
-          iNoteBook
+        <Link id="brandlogo" className="navbar-brand" to="/">
+          <a href="https:ss.com"> iNoteBook</a>
         </Link>
         <button
           className="navbar-toggler"

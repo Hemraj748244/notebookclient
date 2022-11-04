@@ -1,17 +1,13 @@
 body {
+  background: #111;
+  background-size: 0.2em 100%;
+  font: 2em/1 Open Sans, Impact;
+  text-transform: capitalize;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: rgb(131, 58, 180);
-  background: linear-gradient(
-    90deg,
-    rgba(131, 58, 180, 1) 0%,
-    rgba(253, 66, 29, 0.7203256302521008) 41%,
-    rgba(252, 176, 69, 1) 100%
-  );
+}
+html,
+body {
+  height: 100%;
 }
 
 code {
@@ -19,6 +15,9 @@ code {
     monospace;
 }
 
+li {
+  color: yellow;
+}
 i {
   cursor: pointer;
 }
