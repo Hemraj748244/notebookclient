@@ -10,7 +10,7 @@ const Login = () => {
     e.preventDefault();
     const { userlogin } = context;
     userlogin(user.email, user.password);
-    console.log("logged in!");
+   
   };
   return (
     <div className="container my-2">

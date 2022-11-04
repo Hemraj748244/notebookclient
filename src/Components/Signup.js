@@ -23,7 +23,7 @@ const Signup = () => {
       password: "",
       cpassword:""
     });
-    console.log(message);
+   
   };
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });

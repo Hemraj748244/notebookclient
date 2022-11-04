@@ -1,21 +1,27 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
-import NoteContext from '../Context/NotesContext/NoteContext';
-import NoteItem from './NoteItem';
+import React, { useContext, useEffect, useState, useRef } from "react";
+import NoteContext from "../Context/NotesContext/NoteContext";
+import NoteItem from "./NoteItem";
+import { useNavigate } from "react-router-dom";
 export default function Note(props) {
+  const navigate = useNavigate();
   const context = useContext(NoteContext);
   const { notes, getAllNotes, editNote } = context;
 
   useEffect(() => {
-    getAllNotes(props.auth);
+    if (props.auth) {
+      getAllNotes(props.auth);
+    } else {
+      navigate("/");
+    }
   }, []);
 
   notes.reverse();
 
   const [note, setNote] = useState({
-    eid: '',
-    etitle: '',
-    edescription: '',
-    etag: '',
+    eid: "",
+    etitle: "",
+    edescription: "",
+    etag: "",
   });
 
   const handleChange = (e) => {
@@ -27,8 +33,8 @@ export default function Note(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    editNote(note.eid, note.etitle, note.edescription, note.etag,props.auth);
-    console.log('updating the note' + JSON.stringify(note));
+    editNote(note.eid, note.etitle, note.edescription, note.etag, props.auth);
+     
 
     // addNotes(note.title, note.description, note.tag);
   };
@@ -41,9 +47,7 @@ export default function Note(props) {
       edescription: enote.description,
       etag: enote.tag,
     });
-    console.log(
-      'sdss ' + note.eid + note.etitle + note.edescription + note.etag
-    );
+    
   };
 
   return (
@@ -109,7 +113,7 @@ export default function Note(props) {
 
                 <div className="mb-3">
                   <label htmlFor="tag" className="form-label">
-                    Tags{' '}
+                    Tags{" "}
                   </label>
                   <input
                     className="form-control form-control-sm"
@@ -147,11 +151,11 @@ export default function Note(props) {
         </div>
       </div>
       <div className="row">
-        {notes.length < 1 && 'Please add a note !'}
+        {notes.length < 1 && "Please add a note !"}
         {notes.map((note) => {
           return (
             <div className="col-md-6" key={note.time}>
-              <NoteItem inote={note} updatenote={EditNote} auth={props.auth}/>
+              <NoteItem inote={note} updatenote={EditNote} auth={props.auth} />
             </div>
           );
         })}

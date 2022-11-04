@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import AuthContext from "./AuthContext";
 import { useNavigate } from "react-router-dom";
-import Alert from "../../Components/Alert";
+
 
 const AuthState = (props) => {
   const navigate = useNavigate();
-  const [message, setMessage] = useState("hello world");
+  const [message, setMessage] = useState("");
 
   const host = "https://inotebookbackend.hemraj748244.repl.co";
 
@@ -32,7 +32,7 @@ const AuthState = (props) => {
       localStorage.setItem("item", json.authtoken);
       navigate("/home");
       setMessage("Successfully signed up!");
-      console.log("Creating the user & AUTH-TOKEN " + json.authtoken);
+       
     } catch (err) {
       console.log(err);
     }

@@ -10,7 +10,7 @@ const AddNote = (props) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
   //Note to be added
-  console.log('Note to be added' + note);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

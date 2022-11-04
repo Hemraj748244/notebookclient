@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const EditNote = ({ _id, title, description, tag }) => {
-  console.log('sdss ' + _id + title + description + tag);
+  
   return (
     <>
       <div

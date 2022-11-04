@@ -6,15 +6,50 @@ export default function Navbar() {
   let loggedIn = false;
 
   const authtoken = localStorage.getItem("item");
-  if (authtoken === null) {
-    loggedIn = false;
-  } else {
-    loggedIn = true;
-  }
+
+  loggedIn = authtoken ?? false ? true : false;
   const logout = () => {
-    localStorage.setItem("item", "null");
+    localStorage.removeItem("item");
     loggedIn = false;
   };
+
+  const displaybuttons = () => {
+    if (!loggedIn) {
+      return (
+        <>
+          <Link
+            className="btn btn-outline-dark btn-rounded mx-2"
+            data-mdb-ripple-color="dark"
+            to="/login"
+            role="button"
+          >
+            Login <i className="fa-solid fa-arrow-right-to-bracket"></i>
+          </Link>
+          <Link
+            className="btn btn-outline-dark btn-rounded mx-2"
+            data-mdb-ripple-color="dark"
+            to="/signup"
+            role="button"
+          >
+            Signup <i class="fa-solid fa-user-plus"></i>
+          </Link>
+        </>
+      );
+    } else {
+      return (
+        <Link
+          className="btn btn-outline-dark btn-rounded"
+          data-mdb-ripple-color="dark"
+          to="/home"
+          role="button"
+          onClick={logout}
+        >
+          Logout <i class="fa-solid fa-right-from-bracket"></i>
+        </Link>
+      );
+    }
+  };
+
   return (
     <nav className="navbar navbar-expand-lg bg-light sticky-top">
       <div className="container-fluid">
@@ -49,28 +84,7 @@ export default function Navbar() {
               </Link>
             </li>
           </ul>
-          <form className="d-flex">
-            {loggedIn === false ? (
-              <Link
-                className="btn btn-outline-dark btn-rounded mx-2"
-                data-mdb-ripple-color="dark"
-                to="/login"
-                role="button"
-              >
-                Login <i className="fa-solid fa-arrow-right-to-bracket"></i>
-              </Link>
-            ) : (
-              <Link
-                className="btn btn-outline-dark btn-rounded"
-                data-mdb-ripple-color="dark"
-                to="/home"
-                role="button"
-                onClick={logout}
-              >
-                Logout <i class="fa-solid fa-right-from-bracket"></i>
-              </Link>
-            )}
-          </form>
+          <form className="d-flex">{displaybuttons()}</form>
         </div>
       </div>
     </nav>

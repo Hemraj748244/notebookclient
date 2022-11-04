@@ -22,7 +22,7 @@ const NoteState = (props) => {
       }
 
       const data = await res.json();
-      console.log(data);
+
       setNotes(data);
     } catch (err) {
       console.log(err.message);
@@ -57,7 +57,7 @@ const NoteState = (props) => {
         "auth-token": authtoken,
       },
     });
-    console.log("note deleted with id " + id);
+
     const newNotes = notes.filter((note) => {
       return note._id != id;
     });
@@ -67,7 +67,6 @@ const NoteState = (props) => {
   //Edit a note
 
   const editNote = async (eid, etitle, edescription, etag, authtoken) => {
-    console.log("note id :" + eid);
     const res = await fetch(`${host}/api/notes/updatenote/${eid}`, {
       method: "PUT",
       headers: {
@@ -84,9 +83,9 @@ const NoteState = (props) => {
     const note = await res.json();
     const item = updatednotes.find((ele) => ele._id === eid);
     const index = updatednotes.indexOf(item);
-    console.log(index);
+
     updatednotes[index] = note;
-    console.log("updation completed :" + JSON.stringify(note));
+
     setNotes(updatednotes);
   };
 
