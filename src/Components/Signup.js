@@ -29,14 +29,15 @@ const Signup = () => {
   };
   return (
     <div className="container my-2">
+      <h2 style={{ color: "white" }}>SignUp -</h2>
       <form
         style={{
           border: "2px solid white",
           padding: "120px",
-          paddingTop: "10px",
+          paddingTop: "50px",
+          paddingBottom: "50px",
         }}
       >
-        <h2 style={{ color: "white" }}>SignUp -</h2>
         <div className="row mb-4">
           <div className="col">
             <div className="form-outline">

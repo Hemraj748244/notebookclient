@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import AuthContext from "./Context/AuthContexts/AuthContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
@@ -14,13 +14,20 @@ import Signup from "./Components/Signup";
 export default function App() {
   // const context = useContext(AuthContext);
   // const { message } = context;
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    setInterval(() => {
+      setShown(true);
+    }, 1200);
+  }, []);
   return (
     <Router>
       <AuthState>
         <NoteState>
           <div className="App">
             <Navbar />
-            <ShowAlert />
+            {shown && <ShowAlert />}
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />

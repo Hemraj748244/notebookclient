@@ -13,14 +13,15 @@ const Login = () => {
   };
   return (
     <div className="container my-2 mx-150">
+      <h2 style={{ color: "white" }}>Login -</h2>
       <form
         style={{
           border: "2px solid white",
           padding: "120px",
-          paddingTop: "10px",
+          paddingTop: "50px",
+          paddingBottom: "50px",
         }}
       >
-        <h2 style={{ color: "white" }}>Login -</h2>
         <div className="form-outline mb-4">
           <input
             type="email"
