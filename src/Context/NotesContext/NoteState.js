@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import NoteContext from "./NoteContext";
 import EditNote from "../../Components/EditNote";
+import AlertContext from '../AlertContexts/AlertContext'
 
 const NoteState = (props) => {
+   const alertcontext = useContext(AlertContext);
+  const {setMessage} = alertcontext;
+
   const host = "https://inotebookbackend.hemraj748244.repl.co";
   const [notes, setNotes] = useState([]);
   const [enote, setEnote] = useState({});
@@ -46,6 +50,7 @@ const NoteState = (props) => {
     });
     const note = await res.json();
     setNotes(notes.concat(note));
+    setMessage("Node added Successfully!")
   };
 
   // Delete a note
@@ -62,6 +67,7 @@ const NoteState = (props) => {
       return note._id != id;
     });
     setNotes(newNotes);
+     setMessage("Node deleted Successfully!")
   };
 
   //Edit a note
@@ -87,6 +93,7 @@ const NoteState = (props) => {
     updatednotes[index] = note;
 
     setNotes(updatednotes);
+     setMessage("Node updated Successfully!")
   };
 
   return (

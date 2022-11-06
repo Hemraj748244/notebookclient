@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 // import AuthContext from "./Context/AuthContexts/AuthContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
@@ -10,35 +10,32 @@ import AuthState from "./Context/AuthContexts/AuthState";
 import ShowAlert from "./Components/ShowAlert";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
-
+import AlertState from "./Context/AlertContexts/AlertState";
+import AlertContext from "./Context/AlertContexts/AlertContext";
 export default function App() {
-  // const context = useContext(AuthContext);
-  // const { message } = context;
-  const [shown, setShown] = useState(false);
-
-  useEffect(() => {
-    setInterval(() => {
-      setShown(true);
-    }, 1200);
-  }, []);
+  const context = useContext(AlertContext);
+  const { visible, setVisible } = context;
+  
   return (
     <Router>
-      <AuthState>
-        <NoteState>
-          <div className="App">
-            <Navbar />
-            {shown && <ShowAlert />}
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/home" element={<Home />} />
-            </Routes>
-            <Footer />
-          </div>
-        </NoteState>
-      </AuthState>
+      <AlertState>
+        <AuthState>
+          <NoteState>
+            <div className="App">
+              <Navbar />
+              {visible && <ShowAlert />}
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/home" element={<Home />} />
+              </Routes>
+              <Footer />
+            </div>
+          </NoteState>
+        </AuthState>
+      </AlertState>
     </Router>
   );
 }

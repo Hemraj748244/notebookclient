@@ -55,7 +55,7 @@ export default function Navbar() {
     <nav className="navbar navbar-expand-lg bg-light sticky-top">
       <div className="container-fluid">
         <Link id="brandlogo" className="navbar-brand" to="/">
-          <a> iNoteBook</a>
+         <a>iNoteBook</a>
         </Link>
         <button
           className="navbar-toggler"

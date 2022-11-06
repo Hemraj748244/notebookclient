@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import Alert from "./Alert";
-import AuthContext from "../Context/AuthContexts/AuthContext";
+import AlertContext from "../Context/AlertContexts/AlertContext";
 
 const ShowAlert = () => {
-  const context = useContext(AuthContext);
-  const { message } = context;
+  const context = useContext(AlertContext);
+  const { message  } = context;
 
-  return <Alert message={message} />;
+  return  <Alert message={message} />;
 };
 
 export default ShowAlert;

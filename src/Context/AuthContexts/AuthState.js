@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AuthContext from "./AuthContext";
 import { useNavigate } from "react-router-dom";
-
+import AlertContext from "../AlertContexts/AlertContext";
 
 const AuthState = (props) => {
   const navigate = useNavigate();
-  const [message, setMessage] = useState("");
+  const alertcontext = useContext(AlertContext);
+  const {setMessage} = alertcontext;
 
   const host = "https://inotebookbackend.hemraj748244.repl.co";
 
@@ -32,7 +33,6 @@ const AuthState = (props) => {
       localStorage.setItem("item", json.authtoken);
       navigate("/home");
       setMessage("Successfully signed up!");
-       
     } catch (err) {
       console.log(err);
     }
@@ -68,7 +68,7 @@ const AuthState = (props) => {
   };
 
   return (
-    <AuthContext.Provider value={{ message, createuser, userlogin }}>
+    <AuthContext.Provider value={{ createuser, userlogin }}>
       {props.children}
     </AuthContext.Provider>
   );

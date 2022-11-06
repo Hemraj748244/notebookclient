@@ -1,28 +1,28 @@
-import React, { useState, useContext } from 'react';
-import NoteContext from '../Context/NotesContext/NoteContext';
+import React, { useState, useContext } from "react";
+import NoteContext from "../Context/NotesContext/NoteContext";
 
 const AddNote = (props) => {
   const context = useContext(NoteContext);
   const { addNotes } = context;
-  const [note, setNote] = useState({ title: '', description: '', tag: '' });
+  const [note, setNote] = useState({ title: "", description: "", tag: "" });
 
   const handleChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
   //Note to be added
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    addNotes(note.title, note.description, note.tag,props.auth);
-    setNote({ title: '', description: '', tag: '' });
+    addNotes(note.title, note.description, note.tag, props.auth);
+    setNote({ title: "", description: "", tag: "" });
   };
 
   return (
     <form>
+      <h2 style={{ color: "white" }}>Add a note :</h2>
       <div className="mb-3">
         <label htmlFor="title" className="form-label">
-          Title{' '}
+          Title{" "}
         </label>
         <input
           type="text"
@@ -51,7 +51,7 @@ const AddNote = (props) => {
 
       <div className="mb-3">
         <label htmlFor="tag" className="form-label">
-          Tags{' '}
+          Tags{" "}
         </label>
         <input
           className="form-control form-control-sm"

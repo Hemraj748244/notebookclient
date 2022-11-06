@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <div className="container">
-        <h2>Add a note :</h2>
+        
         <AddNote auth={token} />
         <h2 className="my-3">Your Notes :</h2>
         <Note auth={token} />
